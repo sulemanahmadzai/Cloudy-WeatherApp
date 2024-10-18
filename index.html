@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Cloudy - Your Weather Companion</title>
+    <!-- Meta Tags for SEO -->
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Get real-time weather updates with Cloudy, your personal weather companion."
+    />
+    <meta
+      name="keywords"
+      content="Weather, Forecast, Climate, Temperature, Cloudy"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Cloudy",
+        "url": "https://yourdomain.com",
+        "description": "Get real-time weather updates with Cloudy, your personal weather companion."
+      }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:400,600,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Main Container -->
+    <div id="main-container">
+      <!-- Side Menu -->
+      <nav id="side-menu">
+        <div class="logo" onclick="scrollToTop(event)">
+          <img
+            src="images/logo-no-background.png"
+            alt="Weather App Logo"
+            loading="lazy"
+          />
+        </div>
+        <ul>
+          <li>
+            <a href="#" onclick="scrollToTop(event)" class="active"
+              ><i class="fas fa-home"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#" onclick="scrollToTables(event)"
+              ><i class="fas fa-table"></i> Tables</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main id="main-content">
+        <!-- Header for Large and Smaller Screens -->
+        <header id="top-header">
+          <div class="header-content">
+            <!-- Logo -->
+            <div class="logo" onclick="scrollToTop(event)">
+              <img
+                src="images/logo-no-background.png"
+                alt="Weather App Logo"
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Navigation Links for Header -->
+            <nav id="header-nav">
+              <ul>
+                <li>
+                  <a href="#" onclick="scrollToTop(event)" class="active"
+                    ><i class="fas fa-home"></i> Dashboard</a
+                  >
+                </li>
+                <li>
+                  <a href="#" onclick="scrollToTables(event)"
+                    ><i class="fas fa-table"></i> Tables</a
+                  >
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Menu Toggle Button for Medium and Smaller Screens -->
+            <div id="menu-toggle" aria-label="Toggle Menu">
+              <i class="fas fa-bars"></i>
+            </div>
+          </div>
+        </header>
+
+        <nav id="mobile-menu">
+          <ul>
+            <li>
+              <a href="#" onclick="scrollToTop(event)"
+                ><i class="fas fa-home"></i> Dashboard</a
+              >
+            </li>
+            <li>
+              <a href="#" onclick="scrollToTables(event)"
+                ><i class="fas fa-table"></i> Tables</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Breadcrumb Navigation -->
+        <nav id="breadcrumb">
+          <a href="#">Home</a> &gt; <span>Dashboard</span>
+        </nav>
+
+        <!-- Weather App -->
+        <section id="weather-app">
+          <!-- Search Container -->
+          <div id="search-container">
+            <div class="input-group">
+              <input type="text" id="search" placeholder=" " />
+              <label for="search">Enter city name</label>
+              <span id="search-error" aria-live="polite"></span>
+            </div>
+            <button id="btn1" aria-label="Get Weather">
+              <i class="fas fa-search"></i>
+            </button>
+            <div id="unit-toggle-container">
+              <label class="switch">
+                <input type="checkbox" id="unit-toggle" />
+                <span class="slider round"></span>
+              </label>
+              <span id="unit-label">Celsius</span>
+            </div>
+          </div>
+
+          <!-- Error Message -->
+          <div id="error-message" role="alert"></div>
+
+          <!-- Loading Spinner -->
+          <div id="loading-spinner" aria-hidden="true">
+            <div class="spinner"></div>
+          </div>
+
+          <!-- Weather Display -->
+          <div class="weather-widget" id="weather-display">
+            <div class="header">
+              <h6 class="city-name" id="city-name">City Name</h6>
+              <h6 class="time" id="time">Time</h6>
+            </div>
+
+            <div class="main-weather-info text-center">
+              <h6 class="temperature" id="temperature">--°C</h6>
+              <span class="weather-condition" id="description">Condition</span>
+            </div>
+
+            <div class="details">
+              <div class="wind-speed">
+                <i class="fas fa-wind"></i>
+                <span id="wind-speed">-- km/h</span>
+              </div>
+              <div class="humidity">
+                <i class="fas fa-tint"></i>
+                <span id="humidity">--%</span>
+              </div>
+              <div class="weather-icon">
+                <img id="weather-icon" src="" alt="Weather Icon" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Container -->
+          <h3>Weather Charts</h3>
+          <div id="charts-container">
+            <!-- Vertical Bar Chart -->
+            <div class="chart-wrapper">
+              <canvas id="bar-chart" aria-label="Bar Chart" role="img"></canvas>
+            </div>
+
+            <!-- Doughnut Chart -->
+            <div class="chart-wrapper">
+              <canvas
+                id="doughnut-chart"
+                aria-label="Doughnut Chart"
+                role="img"
+              ></canvas>
+            </div>
+
+            <!-- Line Chart -->
+            <div class="chart-wrapper">
+              <canvas
+                id="line-chart"
+                aria-label="Line Chart"
+                role="img"
+              ></canvas>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div id="filters-container">
+            <h3>Filters</h3>
+            <button id="sort-asc">
+              <i class="fas fa-sort-amount-up"></i> Sort Temperatures Ascending
+            </button>
+            <button id="sort-desc">
+              <i class="fas fa-sort-amount-down"></i> Sort Temperatures
+              Descending
+            </button>
+            <button id="filter-rain">
+              <i class="fas fa-cloud-rain"></i> Filter Days with Rain
+            </button>
+            <button id="highest-temp">
+              <i class="fas fa-thermometer-full"></i> Show Day with Highest
+              Temperature
+            </button>
+            <button id="reset-filters">
+              <i class="fas fa-redo"></i> Reset Filters
+            </button>
+          </div>
+
+          <!-- Forecast Table -->
+          <div id="forecast-table-container">
+            <h3>Temperature Forecast Table</h3>
+            <table id="forecast-table">
+              <thead>
+                <tr>
+                  <th>Date &amp; Time</th>
+                  <th>Temperature (°<span id="unit-symbol-table">C</span>)</th>
+                  <th>Weather</th>
+                </tr>
+              </thead>
+              <tbody id="forecast-table-body">
+                <!-- Forecast data will be inserted here -->
+              </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            <div id="pagination-controls">
+              <button id="prev-page" disabled aria-label="Previous Page">
+                <i class="fas fa-arrow-left"></i>
+              </button>
+              <span id="page-info"></span>
+              <button id="next-page" aria-label="Next Page">
+                <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+      <div id="chatbot-header">
+        <h3>Weather Chatbot</h3>
+        <button id="chatbot-toggle" aria-label="Minimize Chatbot">
+          <i class="fas fa-minus"></i>
+        </button>
+      </div>
+      <div id="chatbot-content">
+        <div id="chatbot-messages" aria-live="polite"></div>
+        <form id="chatbot-form">
+          <input
+            type="text"
+            id="chatbot-input"
+            placeholder="Ask me about the weather..."
+            aria-label="Chatbot Input"
+            required
+          />
+          <button type="submit" aria-label="Send Message">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+  </body>
+</html>

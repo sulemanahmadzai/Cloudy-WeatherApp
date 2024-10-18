@@ -1,0 +1,1074 @@
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root Variables */
+:root {
+  --primary-color: #3498db;
+  --primary-dark: #2980b9;
+  --primary-light: #5dade2;
+  --secondary-color: #2c3e50;
+  --background-color: #f5f6fa;
+  --text-color: #2d3436;
+  --white: #fff;
+  --font-family: "Nunito", sans-serif;
+  --transition-speed: 0.3s;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 10px;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --background-color: #2d3436;
+  --text-color: #ecf0f1;
+}
+
+/* Body Styles */
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Dark Mode Toggle */
+#dark-mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--white);
+  color: var(--primary-dark);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: var(--box-shadow);
+  transition: background-color var(--transition-speed);
+}
+
+#dark-mode-toggle:hover {
+  background-color: var(--primary-light);
+}
+
+/* Main Container */
+#main-container {
+  display: flex;
+}
+
+/* Side Menu Styles */
+#side-menu {
+  width: 250px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark),
+    var(--secondary-color)
+  );
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  transition: background-color var(--transition-speed),
+    width var(--transition-speed);
+  box-shadow: var(--box-shadow);
+}
+
+#side-menu.collapsed {
+  width: 80px;
+}
+
+#side-menu .logo {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+#side-menu .logo img {
+  max-width: 100px;
+  height: 100px;
+  border-radius: var(--border-radius);
+  transition: transform var(--transition-speed);
+  margin-left: 40px;
+}
+.header-content .logo img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+#side-menu .logo img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+#side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+#side-menu ul li {
+  margin: 10px 0;
+}
+
+#side-menu ul li a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-speed),
+    background-color var(--transition-speed);
+  padding: 10px;
+  border-radius: var(--border-radius);
+}
+
+#side-menu ul li a i {
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+#side-menu ul li a.active,
+#side-menu ul li a:hover {
+  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Collapsible Button */
+#side-menu .collapse-btn {
+  position: absolute;
+  top: 20px;
+  right: -20px;
+  background-color: var(--primary-dark);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  transition: background-color var(--transition-speed);
+}
+
+/* Main Content Styles */
+#main-content {
+  margin-left: 250px;
+  padding: 40px 60px;
+  flex: 1;
+  transition: margin-left var(--transition-speed);
+}
+
+#main-content.collapsed {
+  margin-left: 80px;
+}
+
+/* Breadcrumb Navigation */
+#breadcrumb {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#breadcrumb a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+#breadcrumb a:hover {
+  color: var(--primary-dark);
+}
+
+/* Weather App Container */
+#weather-app {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+#weather-app h2,
+#weather-app h3 {
+  margin-bottom: 30px;
+  color: var(--primary-dark);
+}
+
+#weather-app p {
+  line-height: 1.6;
+}
+
+/* Search Container */
+#search-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+
+.input-group {
+  position: relative;
+  margin-right: 20px;
+}
+
+.input-group input {
+  padding: 14px 20px;
+  border: 2px solid var(--primary-light);
+  border-radius: var(--border-radius);
+  width: 300px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color var(--transition-speed);
+}
+
+.input-group input:focus {
+  border-color: var(--primary-dark);
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  background-color: var(--white);
+  padding: 0 5px;
+  color: var(--primary-dark);
+  pointer-events: none;
+  transition: top var(--transition-speed), font-size var(--transition-speed);
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -10px;
+  font-size: 12px;
+}
+
+#search-error {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+#btn1 {
+  padding: 14px 20px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+#btn1:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+#unit-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+#unit-label {
+  margin-left: 10px;
+  font-size: 16px;
+  color: var(--primary-dark);
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background-color var(--transition-speed);
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--white);
+  transition: transform var(--transition-speed);
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-light);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Error Message */
+#error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Loading Spinner */
+#loading-spinner {
+  text-align: center;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.spinner {
+  border: 6px solid rgba(0, 0, 0, 0.1);
+  border-top: 6px solid var(--primary-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Weather Display */
+#weather-display {
+  display: none;
+}
+
+.weather-widget {
+  width: 100%;
+  max-width: 100%;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  color: #000;
+  background-size: cover;
+  background-position: center;
+}
+
+.weather-widget .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather-widget .city-name,
+.weather-widget .time {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.weather-widget .main-weather-info {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.weather-widget .temperature {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.weather-widget .weather-condition {
+  font-size: 1rem;
+  color: #868b94;
+}
+
+.weather-widget .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.weather-widget .details div {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  color: #868b94;
+}
+
+.weather-widget .details i {
+  margin-right: 8px;
+}
+
+.weather-widget .weather-icon img {
+  width: 80px;
+}
+
+.weather-widget img {
+  border-radius: 50%;
+}
+
+/* Optional: Add transition for hover */
+.weather-widget:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+#charts-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+}
+
+.chart-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Filters Container */
+#filters-container {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-right: 20px;
+}
+
+#filters-container h3 {
+  margin-bottom: 20px;
+}
+
+#filters-container button {
+  padding: 12px 25px;
+  margin: 10px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+#filters-container button i {
+  margin-right: 8px;
+}
+
+#filters-container button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Forecast Table */
+#forecast-table-container {
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+#forecast-table-container h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-dark);
+}
+
+#forecast-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#forecast-table th,
+#forecast-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 16px;
+}
+
+#forecast-table th {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+#forecast-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#forecast-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Pagination Controls */
+#pagination-controls {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#pagination-controls button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: background-color var(--transition-speed),
+    transform var(--transition-speed);
+}
+
+#pagination-controls button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+#pagination-controls button:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+#pagination-controls span {
+  font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  #side-menu {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 20px;
+  }
+
+  #search-container {
+    flex-direction: column;
+  }
+
+  .input-group {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .input-group input {
+    width: 100%;
+  }
+
+  #btn1 {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  #unit-toggle-container {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  #weather-display h2 {
+    font-size: 24px;
+  }
+
+  #weather-display p {
+    font-size: 16px;
+  }
+
+  #weather-display img {
+    width: 80px;
+  }
+
+  #filters-container button {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  #forecast-table th,
+  #forecast-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+/* Chatbot Styles */
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  max-height: 500px;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  transition: width 0.3s, height 0.3s;
+}
+
+#chatbot-header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatbot-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#chatbot-header button {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto; /* Enable scrolling */
+  background-color: #f9f9f9;
+  max-height: 350px; /* Set max height for the messages area */
+  scroll-behavior: smooth; /* Smooth scrolling effect */
+}
+
+/* Make sure the chatbot-content container takes up space for the scrolling */
+#chatbot-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: 450px; /* Ensure content doesn't overflow */
+}
+
+#chatbot-messages .message {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#chatbot-messages .message.user {
+  align-items: flex-end;
+}
+
+#chatbot-messages .message.bot {
+  align-items: flex-start;
+}
+
+#chatbot-messages .message p {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  background-color: var(--primary-light);
+  color: var(--white);
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+#chatbot-messages .message.user p {
+  background-color: var(--primary-dark);
+}
+
+#chatbot-form {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chatbot-form input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+#chatbot-form button {
+  background-color: var(--primary-color);
+  border: none;
+  color: var(--white);
+  padding: 10px;
+  cursor: pointer;
+}
+
+#chatbot-container.minimized #chatbot-content {
+  display: none;
+}
+
+#chatbot-container.minimized {
+  height: auto;
+}
+
+/* Responsive Design for Chatbot */
+@media (max-width: 768px) {
+  #chatbot-container {
+    width: 90%;
+    bottom: 10px;
+    right: 5%;
+  }
+
+  #chatbot-header h3 {
+    font-size: 16px;
+  }
+
+  #chatbot-messages {
+    max-height: 300px;
+  }
+
+  #chatbot-form input {
+    padding: 8px;
+  }
+
+  #chatbot-form button {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  #chatbot-container {
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+  }
+
+  #chatbot-header h3 {
+    font-size: 14px;
+  }
+
+  #chatbot-messages {
+    max-height: 250px;
+  }
+
+  #chatbot-form input {
+    padding: 6px;
+  }
+
+  #chatbot-form button {
+    padding: 6px;
+  }
+}
+
+/* Hide the header, mobile menu by default */
+#top-header,
+#mobile-menu {
+  display: none;
+}
+
+/* Menu Toggle Button Styles */
+#menu-toggle {
+  display: none;
+}
+
+/* Media Queries */
+
+/* For screen sizes between 768px and 1026px */
+@media screen and (min-width: 1026) {
+  /* Hide the side menu and header navigation links */
+  #header-nav ul li {
+    display: none;
+  }
+}
+
+/* For screen sizes between 768px and 1026px */
+@media screen and (min-width: 768px) and (max-width: 1026px) {
+  /* Hide the side menu */
+  #side-menu {
+    display: none;
+  }
+
+  #breadcrumb {
+    display: none;
+  }
+  /* Show the top header */
+  #top-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--secondary-color)
+    );
+    color: var(--white);
+    padding: 10px 20px;
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  #top-header .header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Logo */
+  #top-header .logo {
+    margin-right: auto;
+  }
+
+  #top-header .logo img {
+    width: 100px;
+    height: auto;
+  }
+
+  /* Navigation links in header */
+  #header-nav {
+    margin-left: auto;
+    margin-right: 20px;
+  }
+
+  #header-nav ul {
+    display: flex;
+    list-style: none;
+  }
+
+  #header-nav ul li {
+    margin: 0 10px;
+  }
+
+  #header-nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  #header-nav ul li a i {
+    margin-right: 8px;
+  }
+
+  /* Menu Toggle Button inside header */
+  #menu-toggle {
+    display: none;
+  }
+
+  /* Adjust main content margin */
+  #main-content {
+    margin-left: 0;
+  }
+}
+
+/* For screen sizes less than 768px (Mobile) */
+@media screen and (max-width: 767px) {
+  /* Hide the side menu and header navigation links */
+  #side-menu,
+  #header-nav {
+    display: none;
+  }
+
+  #breadcrumb {
+    display: none;
+  }
+
+  /* Show the top header */
+  #top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--secondary-color)
+    );
+    color: var(--white);
+    padding: 10px 20px;
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  #top-header .header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Logo on the left */
+  #top-header .logo {
+    margin-right: auto;
+  }
+
+  #top-header .logo img {
+    width: 80px;
+    height: auto;
+  }
+
+  /* Menu Toggle Button on the right */
+  #menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  /* Mobile Menu */
+  #mobile-menu {
+    display: none;
+    position: absolute;
+    top: 50px; /* Adjust this value to align the menu below the toggle button */
+    right: 10px; /* Aligns the menu to the right edge of the toggle button */
+    width: 150px; /* Set the width of the dropdown menu */
+    background-color: var(--primary-color);
+    z-index: 999;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+
+  #mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #mobile-menu ul li {
+    margin: 0;
+  }
+
+  #mobile-menu ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px 15px;
+  }
+
+  #mobile-menu ul li a:hover {
+    background-color: var(--primary-dark);
+  }
+
+  /* Mobile Menu Open State */
+  #mobile-menu.open {
+    display: block;
+  }
+
+  /* Adjust the menu toggle button */
+  #menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 24px;
+    cursor: pointer;
+    position: relative; /* Make the parent relative for absolute positioning of the dropdown */
+  }
+}
+
+/* For screen sizes greater than 1026px */
+@media screen and (min-width: 1027px) {
+  /* Show the side menu */
+  #side-menu {
+    display: block;
+  }
+
+  /* Hide the top header and menu toggle */
+  #top-header,
+  #menu-toggle {
+    display: none;
+  }
+
+  /* Adjust main content margin */
+  #main-content {
+    margin-left: 250px; /* Width of the side menu */
+  }
+}
+
+/* Mobile Menu Open State */
+#mobile-menu.open {
+  display: block;
+}
+
+/* Transition for mobile menu */
+#mobile-menu {
+  transition: max-height 0.3s ease;
+}
+
+#menu-toggle i {
+  font-size: 24px;
+}
+
+#menu-toggle:hover {
+  color: var(--primary-light);
+}
+
+/* Adjusting other elements as needed for responsiveness */
+/* ... (Add any additional responsive styles here) */
+
+/* [Rest of your existing CSS remains unchanged] */
+
+/* Existing styles remain unchanged */
+
+/* Charts Container */
+#charts-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.chart-wrapper {
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+}
+
+.chart-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Responsive Charts */
+@media screen and (max-width: 1026px) {
+  #charts-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chart-wrapper {
+    width: calc(100vw - 100px);
+    max-width: 500px;
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  .chart-wrapper canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* Rest of your existing CSS remains unchanged */
