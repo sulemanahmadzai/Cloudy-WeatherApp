@@ -54,9 +54,6 @@ The Cloudy Weather App is deployed on Vercel. Check it out live here:
 
 🔗 [Cloudy Weather App](https://cloudy-weather-app.vercel.app/)
 
-## Screenshots
-
-![Cloudy Weather App Screenshot](images/screenshot.png)
 
 ## License
 
