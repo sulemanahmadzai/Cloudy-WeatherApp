@@ -61,7 +61,4 @@ This project is licensed under the MIT License.
 
 ---
 
-### Additional Notes
 
-- The app supports geolocation to fetch weather for the user’s current location.
-- Chart visualizations are built using `Chart.js`.
